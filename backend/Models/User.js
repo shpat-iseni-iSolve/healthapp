@@ -16,14 +16,14 @@ var diagnosesSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
     firstname: {type: String},
     lastname: {type: String},
-    guardianName: {type: String},
+    guardianName: {type: String, default: ''},
     socialID: {type: String},
     username: {type: String},
     email: {type: String},
     password: {type: String},
-    appointment: {type: String},
+    appointment: {type: String, default: ''},
     results: {type: [resultsSchema.schema], default: null},
-    recommendedDrugs: {type: String},
+    recommendedDrugs: {type: String, default: ''},
     role: {type: String},
     diagnoses: {type: [diagnosesSchema.schema], default: null},
 });

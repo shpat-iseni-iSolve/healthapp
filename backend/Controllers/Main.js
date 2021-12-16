@@ -7,9 +7,9 @@ exports.test = async (req, res, next) => {
         lastname: 'test',
         guardianName: 'ska',
         socialID: '2606998470008',
-        username: 'nameskatest',
+        username: 'name',
         email: 'nameskatest@email.com',
-        password: 'password',
+        password: 'test',
         appointment: 'appointment',
         recommendedDrugs: 'recommendedDrugs',
         role: 'role',
@@ -25,6 +25,39 @@ exports.test = async (req, res, next) => {
 
     res.status(200).json({test:'test'});
 }
+ 
+exports.registerUser = async (req, res, next) => {
+
+    const userToRegister = req.body;
+
+    const userExists = await User.findOne({'socialID':userToRegister.socialID});
+
+    if(userExists != null){        
+        res.status(403).json('User already exists with the same social number!');
+    }
+    else {
+        const usertosave = new User({
+            firstname: userToRegister.firstName,
+            lastname: userToRegister.lastName,
+            guardianName: userToRegister.guardianName,
+            socialID: userToRegister.socialID,
+            username: userToRegister.username,
+            email: userToRegister.email,
+            password: userToRegister.password,
+            role: 'user'
+        });
+        
+        await usertosave.save(async (err, data) => {
+            if (err) {
+                console.log('in err', err);
+            }
+            console.log('in done', data);
+        });
+
+        res.status(200).json('User registered!');
+    }
+}
+
 exports.authenticateUser = async (req, res, next) => {
 
     console.log('ktau');
