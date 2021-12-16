@@ -7,12 +7,16 @@ import { AccountService } from '../_services';
 export class ListComponent implements OnInit {
     users = null;
 
-    constructor(private accountService: AccountService) {}
-
+    constructor(private accountService: AccountService) {
+        
+    }
+    
     ngOnInit() {
         this.accountService.getAll()
+        
             .pipe(first())
             .subscribe(users => this.users = users);
+            this.test()
     }
 
     deleteUser(id: string) {
@@ -23,5 +27,14 @@ export class ListComponent implements OnInit {
             .subscribe(() => {
                 this.users = this.users.filter(x => x.id !== id) 
             });
+    }
+
+
+    test ( ){
+
+        setTimeout(() => {
+        console.log(this.users);
+            
+        }, 100);
     }
 }
