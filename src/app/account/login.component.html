@@ -1,28 +1,86 @@
-<div class="card">
-    <h4 class="card-header">Login</h4>
-    <div class="card-body">
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-12 login-form-1">
+            <h3>Login</h3>
+            <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" formControlName="username" required [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" formControlName = "password" required [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 </div>
-            </div>
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
-                </button>
-                <a routerLink="../register" class="btn btn-link">Register</a>
-            </div>
-        </form>
-    </div>
-</div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btnSubmit">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                    </button>&nbsp;&nbsp;&nbsp;
+                    <button class="btnSubmit1" routerLink="../register"> Sign Up</button>
+                </div>
+                <div class="form-group">
+                    <a href="#" class="ForgetPwd">Forget Password?</a>
+                </div>
+            </form>
+        </div>
+
+
+
+ <style>
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  .login-form-1 h3{
+    text-align: center;
+    color: #333;
+  }
+  .login-form-2{
+    padding: 5%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  .login-form-2 h3{
+    text-align: center;
+    color: #fff;
+  }
+  .login-container form{
+    padding: 10%;
+  }
+  .btnSubmit
+  {
+    width: 45%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+  }
+  .btnSubmit1{
+      width: 45%;
+      border-radius: 1rem;
+      padding: 1.5%;
+      cursor: pointer;
+  
+  }
+  .login-form-1 .btnSubmit1{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+    border-color: #0062cc;
+  }
+  .login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+  
+  }
+  
+  .login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+  }
+    </style>
