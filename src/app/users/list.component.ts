@@ -7,21 +7,34 @@ import { AccountService } from '../_services';
 export class ListComponent implements OnInit {
     users = null;
 
-    constructor(private accountService: AccountService) {}
-
+    constructor(private accountService: AccountService) {
+        
+    }
+    
     ngOnInit() {
         this.accountService.getAll()
+        
             .pipe(first())
             .subscribe(users => this.users = users);
+            this.test()
     }
 
-    deleteUser(id: string) {
-        const user = this.users.find(x => x.id === id);
+    deleteUser(_id: string) {
+        const user = this.users.find(x => x._id === _id);
         user.isDeleting = true;
-        this.accountService.delete(id)
+        this.accountService.delete(_id)
             .pipe(first())
             .subscribe(() => {
-                this.users = this.users.filter(x => x.id !== id) 
+                this.users = this.users.filter(x => x._id !== _id) 
             });
+    }
+
+
+    test ( ){
+
+        setTimeout(() => {
+        console.log(this.users);
+            
+        }, 100);
     }
 }
