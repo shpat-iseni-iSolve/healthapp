@@ -1,43 +1,131 @@
-<div class="card">
-    <h4 class="card-header">Register</h4>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
-                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Register
-                </button>
-                <a routerLink="../login" class="btn btn-link">Cancel</a>
-            </div>
-        </form>
+
+<a routerLink="../login" class="btn btn-link" ><img src="https://img.icons8.com/fluency/48/000000/back.png"/><i>Back</i></a>
+<div class="container login-container">
+    <div class="col-md-12 login-form-1">
+	<form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+		<div class="row">
+			<div class="col-sm-6 form-group">
+				<label>First name</label>
+				<input type="text" class="form-control" formControlName="firstName" required [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+
+			</div>
+			<div class="col-sm-6 form-group">
+				<label>Last name</label>
+				<input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<input type="email" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+		</div>
+		<div class="row">
+			<div class="col-sm-6 form-group">
+				<label>Guardian Name</label>
+				<input type="password" class="form-control" formControlName="guardianName" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+			</div>
+			<div class="col-sm-6 form-group">
+				<label>Social ID</label>
+				<input type="number" class="form-control" formControlName="socialID" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+			</div>
+			<div class="col-sm-6 form-group">
+				<label>Password</label>
+				<input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 form-group">
+				<label>Gender</label>
+				<div>
+					<label class="check-label">
+<input type="radio" name="gender" value="Male" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"><i class="blue"></i>Male</label>
+					<div class="spacer"></div>
+					<label class="check-label">
+<input type="radio" name="gender" value="Female" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"><i class="blue"></i> Female
+</label>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- <button type="submit" class="btn btn-secondary" [disabled]="formRef.invalid">Sign Up</button>||
+    <button  class="btn btn-secondary"  [routerLink]="['']"> Login</button> -->
+
+    <div class="form-group">
+      <input type="submit" class="btnSubmit" value="Sign Up" [disabled]="formRef.invalid"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
     </div>
+    
+</form>
 </div>
+</div>
+
+
+
+<style>
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  .login-form-1 h3{
+    text-align: center;
+    color: #333;
+  }
+  .login-form-2{
+    padding: 5%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  }
+  .login-form-2 h3{
+    text-align: center;
+    color: #fff;
+  }
+  .login-container form{
+    padding: 10%;
+  }
+  .btnSubmit
+  {
+    width: 45%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+    
+  }
+  .btnSubmit1{
+      width: 45%;
+      border-radius: 1rem;
+      padding: 1.5%;
+      cursor: pointer;
+  
+  }
+  .login-form-1 .btnSubmit1{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+    border-color: #0062cc;
+  }
+  .login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+  
+  }
+  
+  .login-form-1 .ForgetPwd{
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+</style>
