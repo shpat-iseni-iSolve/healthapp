@@ -41,3 +41,14 @@ exports.authenticateUser = async (req, res, next) => {
         token: 'secret'
     });
 }
+
+exports.getUsers = async (req, res, next) => {
+    const users = await User.find();
+    res.status(200).json(users);
+}
+exports.getUserById = async (req, res, next) => {
+    const users = await User.findOne({_id: req.params.id});
+    console.log(req.params.id)
+    console.log(users._id)
+    res.status(200).json(users);
+}

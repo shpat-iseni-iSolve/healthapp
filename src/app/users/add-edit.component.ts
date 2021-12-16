@@ -8,7 +8,7 @@ import { AccountService, AlertService } from '../_services';
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
     form: FormGroup;
-    id: string;
+    _id: string;
     isAddMode: boolean;
     loading = false;
     submitted = false;
@@ -22,8 +22,8 @@ export class AddEditComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.id = this.route.snapshot.params['id'];
-        this.isAddMode = !this.id;
+        this._id = this.route.snapshot.params['id'];
+        this.isAddMode = !this._id;
         
         // password not required in edit mode
         const passwordValidators = [Validators.minLength(6)];
@@ -32,18 +32,20 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            role: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
         if (!this.isAddMode) {
-            this.accountService.getById(this.id)
+            this.accountService.getById(this._id)
                 .pipe(first())
                 .subscribe(x => {
-                    this.f.firstName.setValue(x.firstName);
-                    this.f.lastName.setValue(x.lastName);
+                    this.f.firstname.setValue(x.firstname);
+                    this.f.lastname.setValue(x.lastname);
+                    this.f.role.setValue(x.role);
                     this.f.username.setValue(x.username);
                 });
         }
@@ -86,7 +88,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private updateUser() {
-        this.accountService.update(this.id, this.form.value)
+        this.accountService.update(this._id, this.form.value)
             .pipe(first())
             .subscribe(
                 data => {
