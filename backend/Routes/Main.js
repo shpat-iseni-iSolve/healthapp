@@ -10,4 +10,7 @@ router.post('/users/register', MainController.registerUser);
 router.get('/users', MainController.getUsers);
 router.get('/users/:id', MainController.getUserById);
 
+router.put('/users/:id', MainController.updateUserById);
+router.delete('/users/:id', MainController.deleteUserById);
+
 module.exports = router;

@@ -85,3 +85,14 @@ exports.getUserById = async (req, res, next) => {
     console.log(users._id)
     res.status(200).json(users);
 }
+exports.updateUserById = async (req, res, next) => {
+    const users = await User.findOneAndUpdate({_id: req.params.id}, req.body);
+    res.status(200).json(users);
+}
+exports.deleteUserById = async (req, res, next) => {
+    const users = await User.deleteOne({_id: req.params.id});
+    console.log(req.params.id)
+    console.log(users._id)
+    res.status(200).json(users);
+}
+
