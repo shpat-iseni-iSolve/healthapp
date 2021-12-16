@@ -1,8 +1,8 @@
 export class User {
     id: string;
     token?: string;
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     guardianName?: string;
     socialID: string;
     username: string;
