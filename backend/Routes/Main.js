@@ -6,5 +6,6 @@ var MainController = require('../Controllers/Main');
 
 router.get('/', MainController.test);
 router.post('/users/authenticate', MainController.authenticateUser);
+router.post('/users/register', MainController.registerUser);
 
 module.exports = router;
