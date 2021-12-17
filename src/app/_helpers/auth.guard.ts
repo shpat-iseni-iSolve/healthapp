@@ -19,15 +19,22 @@ export class AuthGuard implements CanActivate {
         console.log('user?.role: ', user.role);
 
 
-        if (user.role == 'user' && route.routeConfig.path == '' || route.routeConfig.path == 'make-appointment' ) {
+        if (user.role == 'user' &&
+         route.routeConfig.path == '' ||
+         route.routeConfig.path == 'make-appointment' ) {
             // authorised so return true
             return true;
         }
-        if (user.role == 'admin' && route.routeConfig.path == '' || route.routeConfig.path == 'users' ) {
+        if (
+            user.role == 'lab' && 
+            route.routeConfig.path == '' || 
+            route.routeConfig.path == 'appointments' ||
+            route.routeConfig.path == 'lab'          
+            ) {
             // authorised so return true
             return true;
         }
-        if (user.role == 'lab' && route.routeConfig.path == '' || route.routeConfig.path == 'make-appointment' ) {
+        if (user.role == 'admin') {
             // authorised so return true
             return true;
         }
