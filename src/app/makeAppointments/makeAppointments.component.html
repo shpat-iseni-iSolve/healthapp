@@ -12,18 +12,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{user.firstname}}</td>
-            <td>{{user.lastname}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.appointment}}</td>
+        <tr>
+            <td>{{selectedUser.firstname}}</td>
+            <td>{{selectedUser.lastname}}</td>
+            <td>{{selectedUser.username}}</td>
+            <td>{{selectedUser.appointment}}</td>
             <button class="btn btn-sm btn-primary mr-1" (click) = "showDetails(user._id)" onclick="document.getElementById('id01').style.display='block'">Make an Appointment</button>
         </tr>
-        <tr *ngIf="!users">
-            <td colspan="4" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
+        
     </tbody>
 </table>
 
@@ -49,10 +45,12 @@
         <p><i>Email</i>: <b>{{selectedUser.email}}</b></p>
         <p><i>Diagnose:</i> <b>{{selectedUser.diagnoses}}</b></p> 
 
-        <input type="datetime-local" [(ngModel)]="datePicker">
-        <button (click)="makeAppointment(selectedUser._id, selectedUser)">Make an Appointment</button>
+        <input type="datetime-local" [(ngModel)]="datePicker">&nbsp;&nbsp;&nbsp;
+        <button (click)="makeAppointment(selectedUser._id, selectedUser)" class="btn btn-sm btn-primary mr-1" onclick="location.reload()">Make an Appointment</button>
 
       </div>
     </div>
   </div>
 </div>
+
+

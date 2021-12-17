@@ -21,6 +21,7 @@ export class AccountService {
     }
 
     public get userValue(): User {
+        
         this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         return this.userSubject.value;
     }
