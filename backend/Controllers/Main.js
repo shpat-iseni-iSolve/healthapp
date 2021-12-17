@@ -1,4 +1,5 @@
 const User = require("../Models/User");
+const Lab = require("../Models/Lab");
 const Mongoose = require('mongoose');
 const axios  = require('axios');
  
@@ -66,14 +67,7 @@ exports.authenticateUser = async (req, res, next) => {
     const _password = req.body.password;
     const user = await User.findOne({$and: [{'username': _username},{'password': _password}]});
 
-    res.status(200).json({
-        id: '123',
-        username: user.username,
-        password: user.password,
-        firstName: user.firstname,
-        lastName: user.lastname,
-        token: 'secret'
-    });
+    res.status(200).json(user);
 }
 
 exports.getUsers = async (req, res, next) => {
@@ -112,6 +106,23 @@ exports.getAppointments = async (req, res, next) => {
         });
         
     res.status(200).json(appointments);
+}
+
+exports.registerLab = async (req, res, next) => {
+
+    const lab = new Lab({
+        name: 'Laboratory',
+        address: 'Dimo Gavrovski Kara 2, Tetovo 1220',
+        phoneNumber: '071234567',
+        capacityPerHour: '5',
+    });
+    
+    lab.save(async (err, data) => {
+        if (err) {
+            res.status(403).json('not allowed.');
+        }
+        res.status(200).json(lab);
+    });
 }
 
 exports.getDrugs = async (req, res, next) => {

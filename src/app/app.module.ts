@@ -11,6 +11,7 @@ import { HomeComponent } from './home';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { LabComponent } from './lab/lab.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
         AppComponent,
         AlertComponent,
         HomeComponent,
+        LabComponent,
 
     ],
     providers: [

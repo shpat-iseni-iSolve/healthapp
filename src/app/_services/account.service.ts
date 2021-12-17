@@ -21,6 +21,7 @@ export class AccountService {
     }
 
     public get userValue(): User {
+        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
         return this.userSubject.value;
     }
 
@@ -29,7 +30,6 @@ export class AccountService {
         console.log(password);
         return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
         .pipe(map(user => {
-                console.log('ktau');
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);
@@ -63,6 +63,7 @@ export class AccountService {
                 if (id == this.userValue.id) {
                     // update local storage
                     const user = { ...this.userValue, ...params };
+                    console.log(user);
                     localStorage.setItem('user', JSON.stringify(user));
 
                     // publish updated user to subscribers

@@ -8,4 +8,4 @@ var labSchema = new mongoose.Schema({
     capacityPerHour: {type: String},
 });
 
-module.exports = new mongoose.model("User", userSchema, "User");
+module.exports = new mongoose.model("Lab", labSchema, "Lab");
