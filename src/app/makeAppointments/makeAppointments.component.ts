@@ -16,12 +16,20 @@ export class MakeAppointmentsComponent implements OnInit {
       
   }
   
+  id:any;
   ngOnInit() {
-      this.accountService.getAll()
-      
-          .pipe(first())
-          .subscribe(users => this.users = users);
-          this.test()
+    this.id = this.accountService.userValue._id;
+    console.log(this.id);
+    this.showDetails(this.id);
+      this.accountService.getById(this.id).subscribe(data =>{
+        this.selectedUser = data;
+      });
+    
+    
+      // this.accountService.getAll()     
+      //     .pipe(first())
+      //     .subscribe(users => this.users = users);
+      //     this.test()
   }
   test ( ){
 
@@ -31,6 +39,7 @@ export class MakeAppointmentsComponent implements OnInit {
       }, 100);
   }
   showDetails(id:string){
+    console.log(id);
     this.accountService.getById(id).subscribe(data =>{
       this.selectedUser = data;
     });
