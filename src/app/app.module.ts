@@ -11,6 +11,10 @@ import { HomeComponent } from './home';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { FileComponent } from './file/file.component';
+import { ProgressComponent } from './progress/progress.component';
+import { MakeAppointmentsComponent } from './makeAppointments/makeAppointments.component';
 
 
 @NgModule({
@@ -26,6 +30,10 @@ import { RouterModule } from '@angular/router';
         AppComponent,
         AlertComponent,
         HomeComponent,
+        AppointmentsComponent,
+        MakeAppointmentsComponent,
+        FileComponent,
+        ProgressComponent,
 
     ],
     providers: [

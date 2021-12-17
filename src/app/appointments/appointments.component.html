@@ -1,0 +1,57 @@
+<h1> Appointments for today </h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th >First Name</th>
+            <th >Last Name</th>
+            <th >Username</th>
+            <th >Appointment</th>
+            <th>Action </th>
+
+            <th ></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.appointment}}</td>
+            <button class="btn btn-sm btn-primary mr-1" (click) = "showDetails(user._id)" onclick="document.getElementById('id01').style.display='block'">Details</button>
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-container">
+  <!-- <h2>W3.CSS Modal</h2> -->
+  <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+       <p><i>Firstname:</i>  <b>{{selectedUser.firstname}}</b></p>
+        <p><i>Last name:</i> <b>{{selectedUser.lastname}}</b></p>
+        <p><i>Gender:</i> <b>{{selectedUser.gender}}</b></p>
+        <p><i>Guardian Name:</i> <b>{{selectedUser.guardianName}}</b></p>
+        <p><i>Birthdate:</i> <b>{{selectedUser.birthdate}}</b></p>
+        <p><i>SocialID:</i> <b>{{selectedUser.socialID}}</b></p>
+        <p><i>Phone Number:</i> <b>{{selectedUser.phoneNumber}}</b></p>
+        <p><i>Address:</i> <b>{{selectedUser.address}}</b></p>
+        <p><i>Username:</i> <b>{{selectedUser.username}}</b></p>
+        <p><i>Email</i>: <b>{{selectedUser.email}}</b></p>
+        <p><i>Diagnose:</i> <b>{{selectedUser.diagnoses}}</b></p> 
+
+        <app-file></app-file>
+
+      </div>
+    </div>
+  </div>
+</div>

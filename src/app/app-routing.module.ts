@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AppointmentsComponent } from './appointments/appointments.component';
 
 import { HomeComponent } from './home';
+import { MakeAppointmentsComponent } from './makeAppointments/makeAppointments.component';
 import { AuthGuard } from './_helpers';
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
@@ -11,6 +13,8 @@ const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
+    { path: 'appointments', component: AppointmentsComponent },
+    { path: 'make-appointment', component: MakeAppointmentsComponent },
     
 
     // otherwise redirect to home
