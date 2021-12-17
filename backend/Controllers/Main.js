@@ -129,7 +129,7 @@ exports.getDrugs = async (req, res, next) => {
     try {
         var response = await axios({
           method: "get",
-          url: `https://api.fda.gov/drug/ndc.json?search=product_type:"HUMAN PRESCRIPTION DRUG"&limit=10000000`,
+          url: `https://api.fda.gov/drug/ndc.json?search=product_type:"HUMAN PRESCRIPTION DRUG"&limit=1000`,
         });
         if (response.status == 200) {
           res.status(200).json(response.data);
