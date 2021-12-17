@@ -33,11 +33,11 @@ export class RegisterComponent implements OnInit {
             guardianName: ['', Validators.required],
             socialID: ['', Validators.required],            
             username: ['', Validators.required],
+            password: ['', [Validators.required]],
+            gender: ['', [Validators.required]],
             birthdate: ['', Validators.required],
             phonenumber: ['', Validators.required],
             adress: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            gender: ['', Validators.required],
         });
     }
 

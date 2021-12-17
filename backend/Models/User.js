@@ -16,8 +16,12 @@ var diagnosesSchema = new mongoose.Schema({
 var userSchema = new mongoose.Schema({
     firstname: {type: String},
     lastname: {type: String},
+    gender: {type: String},
     guardianName: {type: String, default: ''},
+    birthdate: {type: String},
     socialID: {type: String},
+    phoneNumber: {type: String},
+    address: {type: String},
     username: {type: String},
     email: {type: String},
     password: {type: String},
