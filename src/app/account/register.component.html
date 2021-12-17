@@ -25,20 +25,37 @@
 			</div>
 			<div class="col-sm-6 form-group">
 				<label>Social ID</label>
-				<input type="number" class="form-control" formControlName="socialID" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+				<input type="text" class="form-control" formControlName="socialID" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-6 form-group">
-				<label>Username</label>
-				<input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+    
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <label>Birthdate</label>
+				<input type="date" id = "datepicker"data-provide="datepicker" class="form-control" formControlName="birthdate" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
 			</div>
 			<div class="col-sm-6 form-group">
-				<label>Password</label>
-				<input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+        <label>Phone Number</label>
+				<input type="number" class="form-control" formControlName="phonenumber" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
 			</div>
 		</div>
-
+    
+    <div class="form-group">
+      <label>Adress</label>
+			<input type="text" class="form-control" formControlName="adress" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+		</div>
+    
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+      </div>
+      <div class="col-sm-6 form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+      </div>
+    </div>
+<!-- GENDER -->
 		<div class="row">
 			<div class="col-sm-12 form-group">
 				<label>Gender</label>
@@ -129,3 +146,10 @@
   }
   
 </style>
+
+<script>
+   $('#datepicker').datepicker({
+        format: 'dd/mm/yyyy'
+    
+    });
+</script>
