@@ -19,6 +19,7 @@ router.delete('/users/:id', MainController.deleteUserById);
 
 // lab
 router.get('/lab/appointments', MainController.getAppointments);
+router.get('/lab/register', MainController.registerLab);
 
 
 // other

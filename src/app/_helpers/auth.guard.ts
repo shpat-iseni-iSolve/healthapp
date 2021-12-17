@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { stringify } from 'querystring';
+import { empty } from 'rxjs';
 
 import { AccountService } from '../_services';
 
@@ -12,7 +14,27 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.accountService.userValue;
-        if (user) {
+        console.log(route);
+        console.log('path: ', route.routeConfig.path);
+        console.log('user?.role: ', user.role);
+
+
+        if (user.role == 'user' &&
+         route.routeConfig.path == '' ||
+         route.routeConfig.path == 'make-appointment' ) {
+            // authorised so return true
+            return true;
+        }
+        if (
+            user.role == 'lab' && 
+            route.routeConfig.path == '' || 
+            route.routeConfig.path == 'appointments' ||
+            route.routeConfig.path == 'lab'          
+            ) {
+            // authorised so return true
+            return true;
+        }
+        if (user.role == 'admin') {
             // authorised so return true
             return true;
         }
