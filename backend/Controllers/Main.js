@@ -1,16 +1,17 @@
 const User = require("../Models/User");
 const Mongoose = require('mongoose');
+const axios  = require('axios');
  
 exports.test = async (req, res, next) => {
     const usertosave = new User({
-        firstname: 'name',
+        firstname: 'date',
         lastname: 'test',
         guardianName: 'ska',
         socialID: '2606998470008',
         username: 'name',
         email: 'nameskatest@email.com',
         password: 'test',
-        appointment: 'appointment',
+        appointment: '2021-12-17T08:01',
         recommendedDrugs: 'recommendedDrugs',
         role: 'role',
     });
@@ -79,16 +80,19 @@ exports.getUsers = async (req, res, next) => {
     const users = await User.find();
     res.status(200).json(users);
 }
+
 exports.getUserById = async (req, res, next) => {
     const users = await User.findOne({_id: req.params.id});
     console.log(req.params.id)
     console.log(users._id)
     res.status(200).json(users);
 }
+
 exports.updateUserById = async (req, res, next) => {
     const users = await User.findOneAndUpdate({_id: req.params.id}, req.body);
     res.status(200).json(users);
 }
+
 exports.deleteUserById = async (req, res, next) => {
     const users = await User.deleteOne({_id: req.params.id});
     console.log(req.params.id)
@@ -96,3 +100,33 @@ exports.deleteUserById = async (req, res, next) => {
     res.status(200).json(users);
 }
 
+exports.getAppointments = async (req, res, next) => {
+    
+    const todaysDate = new Date();
+    
+    const appointments = await User.find(
+        {
+                "appointment": {
+                    "$gte": todaysDate.toISOString().split('T')[0],
+                }
+        });
+        
+    res.status(200).json(appointments);
+}
+
+exports.getDrugs = async (req, res, next) => {
+    try {
+        var response = await axios({
+          method: "get",
+          url: `https://api.fda.gov/drug/ndc.json?search=product_type:"HUMAN PRESCRIPTION DRUG"&limit=10000000`,
+        });
+        if (response.status == 200) {
+          res.status(200).json(response.data);
+        } else {
+          res.status(404).json({ message: "Not found!" });
+        }
+      } catch (err) {
+        console.log("no drugs :( " + err);
+        res.status(404).json({ message: "Not found!" });
+      }
+}

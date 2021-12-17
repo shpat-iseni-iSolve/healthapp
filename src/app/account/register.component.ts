@@ -32,7 +32,8 @@ export class RegisterComponent implements OnInit {
             socialID: [0, Validators.required],            
             username: ['', Validators.required],
             email: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            password: ['', [Validators.required]],
+            gender: ['', [Validators.required]]
         });
     }
 
