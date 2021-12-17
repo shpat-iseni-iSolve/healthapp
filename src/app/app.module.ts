@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { FileComponent } from './file/file.component';
 import { ProgressComponent } from './progress/progress.component';
 import { MakeAppointmentsComponent } from './makeAppointments/makeAppointments.component';
+import {MaterialExampleModule} from '../material.module';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { MakeAppointmentsComponent } from './makeAppointments/makeAppointments.c
         HttpClientModule,
         FormsModule,
         RouterModule,
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatNativeDateModule,
+        MaterialExampleModule,
     ],
     declarations: [
         AppComponent,

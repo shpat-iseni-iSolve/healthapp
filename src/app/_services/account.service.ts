@@ -52,6 +52,10 @@ export class AccountService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
+    getPrescription() {
+        return this.http.get<any>(`${environment.apiUrl}/getdrugs`);
+    }
+
     getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }

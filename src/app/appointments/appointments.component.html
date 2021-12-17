@@ -52,6 +52,39 @@
         <app-file></app-file>
 
       </div>
+
+      <div class="w3-container">
+        <div class="example-container">
+          <h2>Prescriptions</h2>
+        
+          <div
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="todo"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item.generic_name}} ({{item.generic_name}})</div>
+          </div>
+        </div>
+        
+        <div class="example-container">
+          <h2>Pharmacy</h2>
+          <mat-form-field appearance="standard">
+            <mat-label>></mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+          </mat-form-field>
+          <div
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="prescription"
+            [cdkDropListConnectedTo]="[todoList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of _prescription" cdkDrag>{{item.generic_name}} ({{item.generic_name}})</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
